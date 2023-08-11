@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ListDemoComponent } from './listdemo.component';
 import { ListDemoRoutingModule } from './listdemo-routing.module';
@@ -12,18 +12,19 @@ import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ListDemoRoutingModule,
-		DataViewModule,
-		PickListModule,
-		OrderListModule,
-		InputTextModule,
-		DropdownModule,
-		RatingModule,
-		ButtonModule
-	],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ListDemoRoutingModule,
+        DataViewModule,
+        PickListModule,
+        OrderListModule,
+        InputTextModule,
+        DropdownModule,
+        RatingModule,
+        ButtonModule,
+        NgOptimizedImage
+    ],
 	declarations: [ListDemoComponent]
 })
 export class ListDemoModule { }

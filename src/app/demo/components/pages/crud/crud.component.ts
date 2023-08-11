@@ -30,14 +30,15 @@ export class CrudComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private productService: ProductService, private messageService: MessageService) { }
+    constructor(private productService: ProductService,
+                private messageService: MessageService) { }
 
     ngOnInit() {
-        this.productService.getProducts().then(data => this.products = data);
+        this.productService.productos().subscribe(data => this.products = data);
 
         this.cols = [
             { field: 'product', header: 'Product' },
-            { field: 'price', header: 'Price' },
+            { field: 'precio', header: 'Precio' },
             { field: 'category', header: 'Category' },
             { field: 'rating', header: 'Reviews' },
             { field: 'inventoryStatus', header: 'Status' }
@@ -89,23 +90,25 @@ export class CrudComponent implements OnInit {
         this.submitted = false;
     }
 
-    saveProduct() {
+   saveProduct() {
         this.submitted = true;
 
-        if (this.product.name?.trim()) {
-            if (this.product.id) {
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
+        if (this.product.nombre?.trim()) {
+            if (this.product.idProducto) {
+                //@ts-ignore
+               this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
+               this.products[this.findIndexById(this.product.idProducto)] = this.product;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
             } else {
-                this.product.id = this.createId();
+                this.productService.registrar(this.product).subscribe(data => (data));
+
+                /*this.product.idProducto = this.createId();
                 this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
+                this.product.foto = 'product-placeholder.svg';
                 // @ts-ignore
                 this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
                 this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });*/
             }
 
             this.products = [...this.products];
@@ -113,6 +116,8 @@ export class CrudComponent implements OnInit {
             this.product = {};
         }
     }
+
+
 
     findIndexById(id: string): number {
         let index = -1;

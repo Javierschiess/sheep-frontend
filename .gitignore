@@ -1,0 +1,12 @@
+# Ignorar directorio de dependencias
+node_modules/
+
+# Ignorar archivos de compilación
+/dist/
+
+# Ignorar archivos de configuración de Angular
+.angular/
+
+.angular/*
+
+.idea

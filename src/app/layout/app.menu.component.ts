@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'MODULOS',
                 items: [
-                    //{ label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
+                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['uikit/formlayout'] },
                     //{ label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
                     //{ label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
                     //{ label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
@@ -85,21 +85,17 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['pages/crud']
                     },
-                    /*{
-                        label: 'Timeline',
-                        icon: 'pi pi-fw pi-calendar',
-                        routerLink: ['/pages/timeline']
+                   /*{
+                        label: 'Registrar',
+                        icon: 'pi pi-user-plus',
+                        routerLink: ['pages/timeline']
                     },*/
                     {
                         label: 'Not Found',
                         icon: 'pi pi-fw pi-exclamation-circle',
                         routerLink: ['/notfound']
                     },
-                    /*{
-                        label: 'Empty',
-                        icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/pages/empty']
-                    },*/
+
                 ]
             },
             /*{

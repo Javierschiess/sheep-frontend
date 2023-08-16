@@ -13,6 +13,7 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import {JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../environments/environment";
+import { RegistrarComponent } from './demo/components/registrar/registrar.component';
 
 export function tokenGetter(){
     return sessionStorage.getItem(environment.TOKEN_NAME);
@@ -20,7 +21,7 @@ export function tokenGetter(){
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent,
+        AppComponent, NotfoundComponent, RegistrarComponent,
     ],
     imports: [
         AppRoutingModule,

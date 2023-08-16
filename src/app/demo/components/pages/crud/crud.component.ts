@@ -89,7 +89,7 @@ export class CrudComponent implements OnInit {
         })).subscribe(data => this.products = data);
         this.deleteProductDialog = false;
         this.products = this.products.filter(val => val.idProducto !== this.product.idProducto);
-        this.messageService.add({ severity: 'warn', summary: 'Eliminado', detail: 'Producto eliminado', life: 3000 });
+        this.messageService.add({ severity: 'error', summary: 'Eliminado', detail: 'Producto eliminado', life: 3000 });
 
     }
 
@@ -135,15 +135,6 @@ export class CrudComponent implements OnInit {
 
         return index;
     }
-
-    /*createId(): string {
-        let id = '';
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
-    }*/
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

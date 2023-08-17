@@ -22,4 +22,14 @@ export class LoginService {
     });
 
   }
+
+  estaLogueado(){
+    let token = sessionStorage.getItem(environment.TOKEN_NAME);
+    return token != null;
+  }
+
+  cerraSesion(){
+    sessionStorage.clear();
+    this.router.navigate([''])
+  }
 }

@@ -14,6 +14,15 @@ import { PhotoService } from './demo/service/photo.service';
 import {JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../environments/environment";
 import { RegistrarComponent } from './demo/components/registrar/registrar.component';
+import { ComercioComponent } from './demo/components/comercio/comercio.component';
+import {InputTextModule} from "primeng/inputtext";
+import {PaginatorModule} from "primeng/paginator";
+import {ButtonModule} from "primeng/button";
+import {CheckboxModule} from "primeng/checkbox";
+import {PasswordModule} from "primeng/password";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {RippleModule} from "primeng/ripple";
+import { ClienteComponent } from './demo/components/cliente/cliente.component';
 
 export function tokenGetter(){
     return sessionStorage.getItem(environment.TOKEN_NAME);
@@ -21,7 +30,7 @@ export function tokenGetter(){
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, RegistrarComponent,
+        AppComponent, NotfoundComponent, RegistrarComponent, ComercioComponent, ClienteComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -32,7 +41,14 @@ export function tokenGetter(){
                 allowedDomains: [environment.HOST.substring(7)],
                 //disallowedRoutes: [`${environment.HOST}/`]
             }
-        })
+        }),
+        InputTextModule,
+        PaginatorModule,
+        ButtonModule,
+        CheckboxModule,
+        PasswordModule,
+        RadioButtonModule,
+        RippleModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

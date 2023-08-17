@@ -3,6 +3,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import {LoginService} from "../../../service/login.service";
 import {environment} from "../../../../../environments/environment";
 import {Router} from "@angular/router";
+import {Product} from "../../../api/product";
 
 @Component({
     selector: 'app-login',
@@ -22,7 +23,6 @@ export class LoginComponent {
 
     usuario: string;
     password!: string;
-
 
     constructor(public layoutService: LayoutService,
                 private loginService : LoginService,

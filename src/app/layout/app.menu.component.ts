@@ -23,7 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'MODULOS',
                 items: [
-                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['uikit/formlayout'] },
+                    //{ label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['uikit/formlayout'] },
                     //{ label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
                     //{ label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
                     //{ label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
@@ -59,7 +59,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Informes',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
-                    {
+                    /*{
                         label: 'Auth',
                         icon: 'pi pi-fw pi-user',
                         items: [
@@ -79,7 +79,7 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/auth/access']
                             }
                         ]
-                    },
+                    },*/
                     {
                         label: 'Inventario',
                         icon: 'pi pi-fw pi-pencil',
@@ -90,11 +90,11 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-user-plus',
                         routerLink: ['pages/timeline']
                     },*/
-                    {
+                    /*{
                         label: 'Not Found',
                         icon: 'pi pi-fw pi-exclamation-circle',
                         routerLink: ['/notfound']
-                    },
+                    },*/
 
                 ]
             },
@@ -153,4 +153,5 @@ export class AppMenuComponent implements OnInit {
             }*/
         ];
     }
+
 }

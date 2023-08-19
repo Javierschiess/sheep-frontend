@@ -1,0 +1,38 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <div class="text-900 text-3xl font-medium mb-3">Bienvenido</div>
+                    <span class="text-600 font-medium">Registrate</span>
+                </div>
+
+                <div class="card p-fluid">
+                    <div class="field">
+                        <label for="nombre" class="text-900 font-medium mb-3">Nombres</label>
+                        <input pInputText id="nombre" placeholder="Nombre" [(ngModel)]="cliente.nombres" type="text" />
+                    </div>
+                    <div class="field">
+                        <label htmlFor="apellidos" class="text-900 font-medium mb-3">Apellidos</label>
+                        <input pInputText id="apellidos" placeholder="Apellidos" [(ngModel)]="cliente.apellidos" type="text" />
+                    </div>
+                    <div class="field">
+                        <label htmlFor="correo" class="text-900 font-medium mb-3">Usuario</label>
+                        <input pInputText id="Correo" placeholder="Usuario" [(ngModel)]="cliente.email"  type="text" />
+                    </div>
+
+                    <div class="field">
+                        <label htmtlFor="contraseña" class="text-900 font-medium mb-3">Contraseña</label>
+                        <input pInputText id="contraseña" placeholder="Contraseña" [(ngModel)]="cliente.password" type="password"/>
+                    </div>
+
+                </div>
+                <button pButton pRipple label="Registrar"  class="w-full p-3 text-xl" (click)="registrarse()"></button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

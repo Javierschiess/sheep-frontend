@@ -4,6 +4,7 @@ export class Comercio{
     direccion?: string;
     nit?: string;
     email?: string;
+    username?: string;
     password?: string;
 
 }

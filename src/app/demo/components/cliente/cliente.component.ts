@@ -12,8 +12,7 @@ export class ClienteComponent implements OnInit{
   cliente: Cliente = {};
 
   constructor(
-      private clienteService : ClienteService) {
-  }
+      private clienteService : ClienteService){}
 
   ngOnInit(): void {
   }

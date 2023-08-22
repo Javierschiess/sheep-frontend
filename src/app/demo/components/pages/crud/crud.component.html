@@ -83,7 +83,7 @@
 
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalles del producto" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <img [src]="product.foto" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.foto">
+                <img ngSrc="product.foto" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.foto">
                 <div class="field">
                     <label for="nombre">Nombre</label>
                     <input type="text" pInputText id="nombre" [(ngModel)]="product.nombre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.nombre}"/>

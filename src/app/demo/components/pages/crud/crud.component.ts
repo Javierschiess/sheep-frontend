@@ -4,6 +4,8 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import {switchMap} from "rxjs";
+import {LoginService} from "../../../service/login.service";
+import {Comercio} from "../../../api/comercio";
 
 @Component({
     templateUrl: './crud.component.html',
@@ -19,7 +21,7 @@ export class CrudComponent implements OnInit {
 
     products: Product[] = [];
 
-    product: Product = {};
+    product: Product = new Product();
 
     selectedProducts: Product[] = [];
 
@@ -32,10 +34,12 @@ export class CrudComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 20];
 
     constructor(private productService: ProductService,
-                private messageService: MessageService) { }
+                private messageService: MessageService,
+                private loginService : LoginService) { }
+
 
     ngOnInit() {
-        this.productService.productos().subscribe(data => this.products = data);
+        this.productService.productosPorComercio(this.loginService.userId).subscribe(data => this.products = data);
 
         this.productService.getProductCambio().subscribe(data => this.productService.productos())
 
@@ -110,6 +114,9 @@ export class CrudComponent implements OnInit {
                 });
                 this.messageService.add({ severity: 'info', summary: 'Modificado', detail: 'Producto modificado', life: 3000 });
             } else {
+                let comercio = new Comercio();
+                comercio.idComercio = this.loginService.userId
+                this.product.comercio = comercio;
                 this.productService.registrar(this.product).pipe(switchMap(() => {
                     return this.productService.productos()
                 })).subscribe(data => this.products = data);

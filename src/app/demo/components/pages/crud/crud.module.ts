@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CrudRoutingModule } from './crud-routing.module';
 import { CrudComponent } from './crud.component';
@@ -34,7 +34,8 @@ import { DialogModule } from 'primeng/dialog';
         DropdownModule,
         RadioButtonModule,
         InputNumberModule,
-        DialogModule
+        DialogModule,
+        NgOptimizedImage
     ],
     declarations: [CrudComponent]
 })

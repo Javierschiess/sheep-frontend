@@ -4,6 +4,8 @@ import { DataView } from 'primeng/dataview';
 import { Product } from 'src/app/demo/api/product';
 import { ProductService } from 'src/app/demo/service/product.service';
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
+import {LoginService} from "../../../service/login.service";
+import {Comercio} from "../../../api/comercio";
 
 @Component({
     templateUrl: './listdemo.component.html'
@@ -18,12 +20,11 @@ export class ListDemoComponent implements OnInit {
 
     sortField: string = '';
 
-    constructor(private productService: ProductService) { }
+    constructor(private productService: ProductService,
+                private loginService : LoginService) { }
 
     ngOnInit() {
         this.productService.productos().subscribe(data => this.products = data);
-
-
         this.sortOptions = [
             { label: 'Precio mas alto', value: '!precio' },
             { label: 'Precio mas bajo', value: 'precio' }

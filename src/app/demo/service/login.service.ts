@@ -10,7 +10,7 @@ export class LoginService {
 
   private url: string = `${environment.UAA_HOST}/realms/sheep/protocol/openid-connect/token`
 
-  private userId: string;
+  userId: string;
 
   constructor(
       private http: HttpClient,
@@ -30,7 +30,6 @@ export class LoginService {
   estaLogueado(){
     const token = sessionStorage.getItem(environment.TOKEN_NAME);
     this.extractUserIDFromToken(token);
-
     return token != null;
   }
 

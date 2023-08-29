@@ -9,7 +9,6 @@ import {environment} from "../../../environments/environment";
 export class LoginService {
 
   private url: string = `${environment.UAA_HOST}/realms/sheep/protocol/openid-connect/token`
-
   userId: string;
 
   constructor(
@@ -44,8 +43,6 @@ export class LoginService {
       const base64: string = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       const decadeToken : any = JSON.parse(window.atob(base64));
       this.userId = decadeToken.sub;
-
-      console.log('ID del usuario ', this.userId);
     }
   }
 }

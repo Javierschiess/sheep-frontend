@@ -17,6 +17,11 @@
                         <label htmlFor="apellidos" class="text-900 font-medium mb-3">Apellidos</label>
                         <input pInputText id="apellidos" placeholder="Apellidos" [(ngModel)]="cliente.apellidos" type="text" />
                     </div>
+
+                    <div class="field">
+                        <label class="text-900 font-medium mb-3">Ubicacion</label>
+                        <p-cascadeSelect [(ngModel)]="selectedCity" [options]="departamentos" optionLabel="nombre" optionGroupLabel="nombre" [optionGroupChildren]="['municipios']" [style]="{ minWidth: '14rem' }" placeholder="Selecciona tu ubicacion"></p-cascadeSelect>
+                    </div>
                     <div class="field">
                         <label htmlFor="correo" class="text-900 font-medium mb-3">Usuario</label>
                         <input pInputText id="Correo" placeholder="Usuario" [(ngModel)]="cliente.email"  type="text" />

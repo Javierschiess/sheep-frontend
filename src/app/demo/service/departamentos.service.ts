@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Cliente} from "../api/cliente";
+import {Departamento} from "../api/departamento";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class DepartamentosService {
 
-private url : string = `${environment.HOST}/clientes/registrar`;
+  private url : string = `${environment.HOST}/departamentos`
 
   constructor(private http : HttpClient) { }
 
-  registrarClientes (cliente : Cliente){
-    return this.http.post(this.url, cliente)
+
+  departamentos(){
+    return this.http.get<Departamento[]>(this.url);
   }
 
 }

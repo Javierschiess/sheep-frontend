@@ -7,5 +7,5 @@ export class Comercio{
     email?: string;
     username?: string;
     password?: string;
-
+    municipio?: string;
 }

@@ -6,7 +6,7 @@ interface InventoryStatus {
     value: string;
 }
 
-export class Product {
+export interface Product {
     id?: string;
     idProducto?:string;
     code?: string;
@@ -18,13 +18,7 @@ export class Product {
     foto?:string;
     estado?:string;
     categoria?: string;
-    comercio ?: Comercio;
+    comercio?: Comercio;
     municipio?: Municipio;
     rating?: number;
-    idUser?: string;
-    //description?: string;
-    //price?: number;
-    //quantity?: number;
-    //category?: string;
-    //image?: string;
 }

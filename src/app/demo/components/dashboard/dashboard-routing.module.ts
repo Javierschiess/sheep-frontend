@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import {GuardService} from "../../service/guard.service";
 
 @NgModule({
     imports: [RouterModule.forChild([

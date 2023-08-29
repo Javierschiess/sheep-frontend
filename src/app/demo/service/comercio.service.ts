@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Comercio} from "../api/comercio";
-import {co} from "@fullcalendar/core/internal-common";
 
 @Injectable({
   providedIn: 'root'

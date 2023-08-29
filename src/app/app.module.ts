@@ -13,8 +13,8 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import {JwtModule} from "@auth0/angular-jwt";
 import {environment} from "../environments/environment";
-import { RegistrarComponent } from './demo/components/registrar/registrar.component';
-import { ComercioComponent } from './demo/components/comercio/comercio.component';
+import { RegistrarComponent } from './demo/components/auth/registrar/registrar.component';
+import { ComercioComponent } from './demo/components/auth/comercio/comercio.component';
 import {InputTextModule} from "primeng/inputtext";
 import {PaginatorModule} from "primeng/paginator";
 import {ButtonModule} from "primeng/button";
@@ -22,7 +22,8 @@ import {CheckboxModule} from "primeng/checkbox";
 import {PasswordModule} from "primeng/password";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {RippleModule} from "primeng/ripple";
-import { ClienteComponent } from './demo/components/cliente/cliente.component';
+import { ClienteComponent } from './demo/components/auth/cliente/cliente.component';
+import {CascadeSelectModule} from "primeng/cascadeselect";
 
 export function tokenGetter(){
     return sessionStorage.getItem(environment.TOKEN_NAME);
@@ -48,7 +49,8 @@ export function tokenGetter(){
         CheckboxModule,
         PasswordModule,
         RadioButtonModule,
-        RippleModule
+        RippleModule,
+        CascadeSelectModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

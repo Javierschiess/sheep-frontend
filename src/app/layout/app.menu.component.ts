@@ -59,7 +59,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Informes',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
-                    {
+                    /*{
                         label: 'Auth',
                         icon: 'pi pi-fw pi-user',
                         items: [
@@ -79,7 +79,7 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/auth/access']
                             }
                         ]
-                    },
+                    },*/
                     {
                         label: 'Inventario',
                         icon: 'pi pi-fw pi-pencil',

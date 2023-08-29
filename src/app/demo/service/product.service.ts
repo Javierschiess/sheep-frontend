@@ -4,6 +4,7 @@ import { Product } from '../api/product';
 import {environment} from "../../../environments/environment";
 import {Subject} from "rxjs";
 import {LoginService} from "./login.service";
+import {Municipio} from "../api/municipio";
 
 @Injectable()
 export class ProductService {
@@ -76,5 +77,17 @@ export class ProductService {
         }
         const url = `${environment.HOST}/productos/buscarPorComercio`;
         return this.http.get<Product[]>(url, {params})
+    }
+
+    productosPorMunicipio(idCliente : string, idMunicipio : string){
+        let params = new HttpParams();
+
+            params = params.set('idCliente', idCliente);
+            params = params.set('idMunicipio', idMunicipio);
+
+        const url = `${environment.HOST}/productos/buscarPorMunicipio`
+        //console.log("id del cliente" + idCliente)
+        console.log(params)
+        return this.http.get<Product[]>(url, {params: params})
     }
 }

@@ -5,6 +5,7 @@
 			<p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="nombre" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
 				<ng-template pTemplate="header">
 					<div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+						<p (click)="valor()"><p-cascadeSelect [(ngModel)]="selectedCity" [options]="departamentos" optionLabel="nombre" optionGroupLabel="nombre" optionValue="idMunicipio" [optionGroupChildren]="['municipios']" [style]="{minWidth: '14rem'}" placeholder="Cambiar ubicacion"></p-cascadeSelect></p>
 						<p-dropdown [options]="sortOptions" placeholder="Ordenar por precio" (onChange)="onSortChange($event)"></p-dropdown>
 						<span class="p-input-icon-left">
                             <i class="pi pi-search"></i>

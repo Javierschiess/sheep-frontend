@@ -3,7 +3,6 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {LoginService} from "./login.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {environment} from "../../../environments/environment";
-import {el} from "@fullcalendar/core/internal-common";
 
 @Injectable({
   providedIn: 'root'

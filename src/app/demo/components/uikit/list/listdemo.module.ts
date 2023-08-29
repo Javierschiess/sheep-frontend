@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
+import {CascadeSelectModule} from "primeng/cascadeselect";
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { ButtonModule } from 'primeng/button';
         DropdownModule,
         RatingModule,
         ButtonModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        CascadeSelectModule
     ],
 	declarations: [ListDemoComponent]
 })

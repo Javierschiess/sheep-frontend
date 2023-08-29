@@ -1,3 +1,5 @@
+import {Municipio} from "./municipio";
+
 export class Cliente{
 
     idCliente?: string;
@@ -9,6 +11,8 @@ export class Cliente{
     email?: string;
 
     password?: string;
+
+    municipio?: Municipio;
 
 
 }

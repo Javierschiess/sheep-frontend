@@ -21,7 +21,7 @@ export class CrudComponent implements OnInit {
 
     products: Product[] = [];
 
-    product: Product = new Product();
+    product: Product = {};
 
     selectedProducts: Product[] = [];
 
@@ -43,19 +43,8 @@ export class CrudComponent implements OnInit {
 
         this.productService.getProductCambio().subscribe(data => this.productService.productos())
 
-       this.cols = [
-            { field: 'product', header: 'Product' },
-            { field: 'precio', header: 'Precio' },
-            { field: 'category', header: 'Category' },
-            { field: 'rating', header: 'Reviews' },
-            { field: 'inventoryStatus', header: 'Status' }
-        ];
+        console.log(this.loginService.userId)
 
-        this.statuses = [
-            { label: 'INSTOCK', value: 'instock' },
-            { label: 'LOWSTOCK', value: 'lowstock' },
-            { label: 'OUTOFSTOCK', value: 'outofstock' }
-        ];
     }
 
     openNew() {
@@ -89,7 +78,7 @@ export class CrudComponent implements OnInit {
 
     confirmDelete(producto : Product) {
         this.productService.eliminarProductos(producto.idProducto).pipe(switchMap(() => {
-            return this.productService.productos()
+            return this.productService.productosPorComercio(this.loginService.userId)
         })).subscribe(data => this.products = data);
         this.deleteProductDialog = false;
         this.products = this.products.filter(val => val.idProducto !== this.product.idProducto);
@@ -107,18 +96,22 @@ export class CrudComponent implements OnInit {
         if (this.product.nombre?.trim()) {
             if (this.product.idProducto != null) {
                 //@ts-ignore
+                let comercio = new Comercio();
+                comercio.idComercio = this.loginService.userId
+                this.product.comercio = comercio;
                 this.productService.modificarProductos(this.product).pipe(switchMap(() => {
-                    return this.productService.productos()
+                    return this.productService.productosPorComercio(this.loginService.userId)
                 })).subscribe(data => {
                     this.products = data;
                 });
+                console.log(this.product)
                 this.messageService.add({ severity: 'info', summary: 'Modificado', detail: 'Producto modificado', life: 3000 });
             } else {
                 let comercio = new Comercio();
                 comercio.idComercio = this.loginService.userId
                 this.product.comercio = comercio;
                 this.productService.registrar(this.product).pipe(switchMap(() => {
-                    return this.productService.productos()
+                    return this.productService.productosPorComercio(this.loginService.userId)
                 })).subscribe(data => this.products = data);
                 this.messageService.add({ severity: 'success', summary: 'Registrado', detail: 'Producto creado', life: 3000 });
             }

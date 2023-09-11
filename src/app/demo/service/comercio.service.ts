@@ -22,4 +22,12 @@ export class ComercioService {
     return this.http.post(this.url, comercio);
   }
 
+  totalComercios(){
+    return this.http.get(`${this.url}/totalComercios`)
+  }
+
+  totalComercios24(){
+    return this.http.get(`${this.url}/totalComercios24`)
+  }
+
 }

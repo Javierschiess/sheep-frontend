@@ -16,4 +16,12 @@ private url : string = `${environment.HOST}/clientes/registrar`;
     return this.http.post(this.url, cliente)
   }
 
+  totalClientes(){
+    return this.http.get(`${environment.HOST}/clientes/totalClientes`);
+  }
+
+  totalClientes24(){
+    return this.http.get(`${environment.HOST}/clientes/totalClientes24`)
+  }
+
 }

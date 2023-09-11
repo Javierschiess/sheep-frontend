@@ -11,11 +11,11 @@
                 </div>
 
                 <div>
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Correo</label>
-                    <input id="email1" [(ngModel)]="usuario" type="text" placeholder="Correo electronico" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Usuario</label>
+                    <input id="email1" [(ngModel)]="usuario" type="text" placeholder="Usuario" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                     <label for="password1" class="block text-900 font-medium text-xl mb-2">Contraseña</label>
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Contraseña" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
+                    <input id="password1" [(ngModel)]="password" placeholder="Contraseña" type="password" (keyup.enter)="iniciarSesion()" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                         <div class="flex align-items-center">
@@ -25,7 +25,7 @@
                         <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Olvidaste tu contraseña?</a>
                         <a class="font-medium no-underline ml-2 text-right cursor-pointer" routerLink="/registrar" style="color: var(--primary-color)">Registrate</a>
                     </div>
-                    <button pButton pRipple label="Ingresar" class="w-full p-3 text-xl" (click)="iniciarSesion()"></button>
+                    <button pButton pRipple label="Ingresar" class="w-full p-3 text-xl" type="submit" (click)="iniciarSesion()" (keyup.enter)="iniciarSesion()"></button>
                 </div>
             </div>
         </div>

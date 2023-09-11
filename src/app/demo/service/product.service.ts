@@ -9,7 +9,7 @@ import {Municipio} from "../api/municipio";
 @Injectable()
 export class ProductService {
 
-    private url: string = `${environment.HOST}/productos`
+    url: string = `${environment.HOST}/productos`
     private idUser = this.loginService.userId;
 
     private productoCambio : Subject<Product[]> = new Subject<Product[]>();
@@ -86,8 +86,14 @@ export class ProductService {
             params = params.set('idMunicipio', idMunicipio);
 
         const url = `${environment.HOST}/productos/buscarPorMunicipio`
-        //console.log("id del cliente" + idCliente)
-        console.log(params)
-        return this.http.get<Product[]>(url, {params: params})
+        return this.http.get<Product[]>(url, {params: params});
     }
+
+    totalProductos(){
+        return this.http.get(`${environment.HOST}/productos/totalProductos`);
+    }
+
+    totalProductos24(){
+        return this.http.get(`${environment.HOST}/productos/totalProductos24`)
+    };
 }

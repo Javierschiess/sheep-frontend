@@ -30,7 +30,7 @@ export class LoginComponent {
     iniciarSesion(){
         this.loginService.login(this.usuario, this.password).subscribe(data => {
             sessionStorage.setItem(environment.TOKEN_NAME, data.access_token);
-            this.router.navigate(['/home/dashboard']);
+            this.router.navigate(['/home/uikit/list']);
         });
     }
 }

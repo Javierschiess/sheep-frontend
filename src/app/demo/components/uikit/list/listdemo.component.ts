@@ -62,9 +62,6 @@ export class ListDemoComponent implements OnInit {
     valor(){
         //const test = JSON.stringify(this.selectedCity);
         this.productService.productosPorMunicipio(this.loginService.userId, this.selectedCity).subscribe(data => this.products = data);
-        console.log(this.selectedCity);
-
-
     }
 
 

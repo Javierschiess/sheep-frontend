@@ -4,6 +4,9 @@ import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import {an} from "@fullcalendar/core/internal-common";
+import {ClienteService} from "../../service/cliente.service";
+import {ComercioService} from "../../service/comercio.service";
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -20,15 +23,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     subscription!: Subscription;
 
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    totalProductos : any;
+
+    totalClientes : any;
+
+    totalComercios : any;
+
+    totalProductos24 : any;
+
+    totalComercios24 : any;
+
+    totalClientes24 : any;
+
+
+    constructor(private productService: ProductService,
+                public layoutService: LayoutService,
+                private clienteService : ClienteService,
+                private comercioService : ComercioService) {
         this.subscription = this.layoutService.configUpdate$.subscribe(() => {
             this.initChart();
         });
+
+
     }
 
     ngOnInit() {
         this.initChart();
         this.productService.getProductsSmall().then(data => this.products = data);
+        this.productService.totalProductos().subscribe(data => this.totalProductos = data);
+        this.clienteService.totalClientes(). subscribe(data => this.totalClientes = data);
+        this.comercioService.totalComercios().subscribe(data => this.totalComercios = data);
+        this.productService.totalProductos24().subscribe(data => this.totalProductos24 = data);
+        this.comercioService.totalComercios24().subscribe(data => this.totalComercios24 = data);
+        this.clienteService.totalClientes24().subscribe(data => this.totalClientes24 = data);
+
 
         this.items = [
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },

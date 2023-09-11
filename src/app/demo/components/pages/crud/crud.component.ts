@@ -40,10 +40,8 @@ export class CrudComponent implements OnInit {
 
     ngOnInit() {
         this.productService.productosPorComercio(this.loginService.userId).subscribe(data => this.products = data);
-
         this.productService.getProductCambio().subscribe(data => this.productService.productos())
 
-        console.log(this.loginService.userId)
 
     }
 
@@ -104,7 +102,6 @@ export class CrudComponent implements OnInit {
                 })).subscribe(data => {
                     this.products = data;
                 });
-                console.log(this.product)
                 this.messageService.add({ severity: 'info', summary: 'Modificado', detail: 'Producto modificado', life: 3000 });
             } else {
                 let comercio = new Comercio();

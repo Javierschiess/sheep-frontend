@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Cliente} from "../api/cliente";
 
 @Injectable({
@@ -14,6 +14,7 @@ private url : string = `${environment.HOST}/clientes/registrar`;
 
   registrarClientes (cliente : Cliente){
     return this.http.post(this.url, cliente)
+
   }
 
   totalClientes(){

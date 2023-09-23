@@ -6,6 +6,9 @@ import { ProductService } from 'src/app/demo/service/product.service';
 import {switchMap} from "rxjs";
 import {LoginService} from "../../../service/login.service";
 import {Comercio} from "../../../api/comercio";
+import {CategoriaService} from "../../../service/categoria.service";
+import {an} from "@fullcalendar/core/internal-common";
+import {Categoria} from "../../../api/categoria";
 
 @Component({
     templateUrl: './crud.component.html',
@@ -33,16 +36,20 @@ export class CrudComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
+    categorias: any[] = [];
+
+    selectedCategoria: string;
+
     constructor(private productService: ProductService,
                 private messageService: MessageService,
-                private loginService : LoginService) { }
+                private loginService : LoginService,
+                private categoriaService : CategoriaService) { }
 
 
     ngOnInit() {
         this.productService.productosPorComercio(this.loginService.userId).subscribe(data => this.products = data);
         this.productService.getProductCambio().subscribe(data => this.productService.productos())
-
-
+        this.categoriaService.categorias().subscribe(data => this.categorias = data);
     }
 
     openNew() {
@@ -107,10 +114,12 @@ export class CrudComponent implements OnInit {
                 let comercio = new Comercio();
                 comercio.idComercio = this.loginService.userId
                 this.product.comercio = comercio;
+                this.product.categoria = this.selectedCategoria;
                 this.productService.registrar(this.product).pipe(switchMap(() => {
                     return this.productService.productosPorComercio(this.loginService.userId)
                 })).subscribe(data => this.products = data);
                 this.messageService.add({ severity: 'success', summary: 'Registrado', detail: 'Producto creado', life: 3000 });
+
             }
 
             this.products = [...this.products];
@@ -136,6 +145,5 @@ export class CrudComponent implements OnInit {
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
-
 
 }

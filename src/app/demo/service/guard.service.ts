@@ -34,8 +34,6 @@ export class GuardService implements CanActivate{
       return false;
     }
 
-
-
   }
 
 }

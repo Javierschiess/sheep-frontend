@@ -9,11 +9,6 @@
                         <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
-
-                <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
-                </ng-template>
             </p-toolbar>
 
             <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','descripcion','representative.nombre','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="idProdcuto">
@@ -109,27 +104,16 @@
                     <label for="foto">Foto</label>
                     <input type="text" pInputText id="foto" [(ngModel)]="product.foto" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.foto}"/>
                 </div>
-
-                <div class="field">
+               <div class="field">
                     <label class="mb-3">Categoria</label>
                     <div class="formgrid grid">
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="categoria1" name="categoria" value="Accessorios" [(ngModel)]="product.categoria"></p-radioButton>
-                            <label for="categoria1">Accesorios</label>
+                        <div *ngFor="let categoria of categorias" class="field-radiobutton col-6">
+                            <p-radioButton [inputId]="categoria" name="categoria" [value]="categoria.idCategoria" [(ngModel)]="selectedCategoria"></p-radioButton>
+                            <label [for]="categoria" class="ml-2">{{categoria.nombre}}</label>
                         </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="categoria2" name="categoria" value="Ropa" [(ngModel)]="product.categoria"></p-radioButton>
-                            <label for="categoria2">Ropa</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="categoria3" name="categoria" value="Electronica" [(ngModel)]="product.categoria"></p-radioButton>
-                            <label for="categoria3">Electronica</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="categoria4" name="categoria" value="Fitness" [(ngModel)]="product.categoria"></p-radioButton>
-                            <label for="categoria4">Fitness</label>
-                        </div>
+
                     </div>
+
                 </div>
                 <div class="field">
                     <label class="mb-3">Estado</label>

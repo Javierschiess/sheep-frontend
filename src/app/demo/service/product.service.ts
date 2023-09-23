@@ -2,7 +2,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../api/product';
 import {environment} from "../../../environments/environment";
-import {Subject} from "rxjs";
+import {interval, startWith, Subject, switchMap} from "rxjs";
 import {LoginService} from "./login.service";
 import {Municipio} from "../api/municipio";
 
@@ -90,10 +90,19 @@ export class ProductService {
     }
 
     totalProductos(){
-        return this.http.get(`${environment.HOST}/productos/totalProductos`);
+        return interval(5000).pipe(
+            startWith(0),
+            switchMap(() => this.http.get(`${environment.HOST}/productos/totalProductos`))
+        );
+
     }
 
     totalProductos24(){
-        return this.http.get(`${environment.HOST}/productos/totalProductos24`)
+        return interval(5000)
+            .pipe(
+                startWith(0),
+                switchMap(() => this.http.get(`${environment.HOST}/productos/totalProductos24`))
+            )
+
     };
 }

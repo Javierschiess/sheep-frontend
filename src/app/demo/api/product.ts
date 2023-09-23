@@ -1,5 +1,6 @@
 import {Municipio} from "./municipio";
 import {Comercio} from "./comercio";
+import {Categoria} from "./categoria";
 
 interface InventoryStatus {
     label: string;
@@ -15,8 +16,8 @@ export interface Product {
     descripcion?: string;
     precio?: number;
     inventoryStatus?: InventoryStatus;
-    foto?:string;
-    estado?:string;
+    foto?: string;
+    estado?: string;
     categoria?: string;
     comercio?: Comercio;
     municipio?: Municipio;

@@ -9,6 +9,9 @@ import {Comercio} from "../../../api/comercio";
 import {CategoriaService} from "../../../service/categoria.service";
 import {an} from "@fullcalendar/core/internal-common";
 import {Categoria} from "../../../api/categoria";
+import {EstadoService} from "../../../service/estado.service";
+import {Estado} from "../../../api/estado";
+import {emitDistinctChangesOnlyDefaultValue} from "@angular/compiler";
 
 @Component({
     templateUrl: './crud.component.html',
@@ -38,18 +41,24 @@ export class CrudComponent implements OnInit {
 
     categorias: any[] = [];
 
-    selectedCategoria: string;
+    selectedCategoria: Categoria;
+
+    estados : any [] = [];
+
+    selectedEstado: Estado;
 
     constructor(private productService: ProductService,
                 private messageService: MessageService,
                 private loginService : LoginService,
-                private categoriaService : CategoriaService) { }
+                private categoriaService : CategoriaService,
+                private estadoService : EstadoService) { }
 
 
     ngOnInit() {
         this.productService.productosPorComercio(this.loginService.userId).subscribe(data => this.products = data);
         this.productService.getProductCambio().subscribe(data => this.productService.productos())
         this.categoriaService.categorias().subscribe(data => this.categorias = data);
+        this.estadoService.estados().subscribe(data => this.estados = data);
     }
 
     openNew() {
@@ -115,6 +124,7 @@ export class CrudComponent implements OnInit {
                 comercio.idComercio = this.loginService.userId
                 this.product.comercio = comercio;
                 this.product.categoria = this.selectedCategoria;
+                this.product.estado = this.selectedEstado;
                 this.productService.registrar(this.product).pipe(switchMap(() => {
                     return this.productService.productosPorComercio(this.loginService.userId)
                 })).subscribe(data => this.products = data);
@@ -127,8 +137,6 @@ export class CrudComponent implements OnInit {
             this.product = {};
         }
     }
-
-
 
     findIndexById(id: string): number {
         let index = -1;

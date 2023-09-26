@@ -27,8 +27,6 @@ export class ComercioComponent implements OnInit{
        this.comercio.municipio = this.selectedCity;
        this.comercioService.registrarComercio(this.comercio).subscribe(data =>
        this.comercio = data);
-       console.log(this.selectedCity)
-
     }
 
 }

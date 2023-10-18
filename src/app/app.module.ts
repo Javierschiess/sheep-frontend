@@ -24,6 +24,8 @@ import {RadioButtonModule} from "primeng/radiobutton";
 import {RippleModule} from "primeng/ripple";
 import { ClienteComponent } from './demo/components/auth/cliente/cliente.component';
 import {CascadeSelectModule} from "primeng/cascadeselect";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
 
 export function tokenGetter(){
     return sessionStorage.getItem(environment.TOKEN_NAME);
@@ -50,12 +52,13 @@ export function tokenGetter(){
         PasswordModule,
         RadioButtonModule,
         RippleModule,
-        CascadeSelectModule
+        CascadeSelectModule,
+        ToastModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        PhotoService, ProductService, MessageService
     ],
     bootstrap: [AppComponent]
 })

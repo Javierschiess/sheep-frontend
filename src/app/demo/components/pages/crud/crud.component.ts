@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -7,17 +7,23 @@ import {switchMap} from "rxjs";
 import {LoginService} from "../../../service/login.service";
 import {Comercio} from "../../../api/comercio";
 import {CategoriaService} from "../../../service/categoria.service";
-import {an} from "@fullcalendar/core/internal-common";
 import {Categoria} from "../../../api/categoria";
 import {EstadoService} from "../../../service/estado.service";
 import {Estado} from "../../../api/estado";
-import {emitDistinctChangesOnlyDefaultValue} from "@angular/compiler";
+import {ImagenService} from "../../../service/imagen.service";
+
+interface UploadEvent {
+    originalEvent: Event;
+    files: File[];
+}
 
 @Component({
     templateUrl: './crud.component.html',
     providers: [MessageService]
 })
 export class CrudComponent implements OnInit {
+
+    @ViewChild('imagenInputFile', {static: false}) imagenFile: ElementRef;
 
     productDialog: boolean = false;
 
@@ -47,11 +53,19 @@ export class CrudComponent implements OnInit {
 
     selectedEstado: Estado;
 
+    imagen: File;
+
+    imagenMin: File;
+
+    file : any;
+
+
     constructor(private productService: ProductService,
                 private messageService: MessageService,
                 private loginService : LoginService,
                 private categoriaService : CategoriaService,
-                private estadoService : EstadoService) { }
+                private estadoService : EstadoService,
+                private imagenService : ImagenService) { }
 
 
     ngOnInit() {
@@ -125,7 +139,7 @@ export class CrudComponent implements OnInit {
                 this.product.comercio = comercio;
                 this.product.categoria = this.selectedCategoria;
                 this.product.estado = this.selectedEstado;
-                this.productService.registrar(this.product).pipe(switchMap(() => {
+                this.productService.registrar(this.product, this.file ).pipe(switchMap(() => {
                     return this.productService.productosPorComercio(this.loginService.userId)
                 })).subscribe(data => this.products = data);
                 this.messageService.add({ severity: 'success', summary: 'Registrado', detail: 'Producto creado', life: 3000 });
@@ -152,6 +166,43 @@ export class CrudComponent implements OnInit {
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    }
+
+    onUpload(){
+        this.imagenService.upload(this.file).subscribe(
+            data => {
+
+            }
+        )
+
+    }
+
+    /*onFileChange(event : any){
+        this.imagen = event.target.files[0] as File;
+        const fr = new FileReader();
+        fr.onload = (evento: any) => {
+            this.imagenMin = evento.target.result;
+        };
+        fr.readAsDataURL(this.imagen);
+    }*/
+
+    reset(): void{
+        this.imagen = null;
+        this.imagenMin = null;
+        this.imagenFile.nativeElement.value = '';
+    }
+
+    onSelect(event : any) {
+        this.imagen = event.target.files[0];
+        this.imagenService.upload(this.imagen);
+    }
+
+    /**
+     * Se llama cuando se selecciona un archivo mediante el evento UploadEvent.
+     * @param event El evento que contiene los archivos seleccionados.
+     */
+    onSelectFile(event: UploadEvent) {
+        this.file = event.files[0];
     }
 
 }

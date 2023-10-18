@@ -101,10 +101,34 @@
                     </p-dropdown>
                 </div>-->
 
-                <div class="field">
-                    <label for="foto">Foto</label>
+                <!--<div class="field">
+                    <label>Foto</label>
                     <input type="text" pInputText id="foto" [(ngModel)]="product.foto" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.foto}"/>
-                </div>
+
+                    <div>
+                        <p-toast></p-toast>
+                        <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"></p-fileUpload>
+                    </div>
+                </div>-->
+
+                <form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
+                    <div>
+                       <!--<input type="file" #imagenInputFile
+                        (change)="onFileChange($event)" accept="image/png, image/jpeg, imgen/gif">-->
+                        <p-fileUpload mode="advanced" name="imagen" [showCancelButton]="false" [showUploadButton]="false" #imagenInputFile (onSelect)="onSelectFile($event)"></p-fileUpload>
+                    </div>
+
+                    <div *ngIf="imagen" class="mt-5">
+                        <h5>Vista Previa:</h5>
+                        <div>
+                            <img class="image-thumbnail" style="max-width: 100px" [src]="imagenMin">
+                        </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                    </div>
+
+                </form>
+
                <div class="field">
                     <label class="mb-3">Categoria</label>
                     <div class="formgrid grid">

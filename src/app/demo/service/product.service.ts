@@ -24,19 +24,21 @@ export class ProductService {
             .then(data => data);
     }
 
-    /*getProducts() {
-        return this.http.get<any>('assets/demo/data/products.json')
-            .toPromise()
-            .then(res => res.data as Product[])
-            .then(data => data);
-    }*/
-
     productos(){
         return this.http.get<Product[]>(this.url);
     }
 
-    registrar(product : Product){
-        return this.http.post(this.url, product);
+    registrar(product : Product, imagen : File){
+        const formData = new FormData();
+        formData.append('nombre', product.nombre);
+        formData.append('descripcion', product.descripcion);
+        formData.append('precio', "6");
+        formData.append('multipartFile', imagen, imagen.name);
+        formData.append('categoria', product.categoria.idCategoria);
+        formData.append('comercio', product.comercio.idComercio);
+        formData.append('estado', product.estado.idEstado);
+        formData.append('rating', "3");
+        return this.http.post(this.url, formData);
     }
 
     getProductsMixed() {

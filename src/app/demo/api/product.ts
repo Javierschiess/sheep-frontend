@@ -8,7 +8,7 @@ interface InventoryStatus {
     value: string;
 }
 
-export interface Product {
+export class Product {
     id?: string;
     idProducto?:string;
     code?: string;
@@ -19,7 +19,7 @@ export interface Product {
     inventoryStatus?: InventoryStatus;
     foto?: string;
     estado?: Estado;
-    categoria?: Categoria;
+    categoria?: Categoria = new Categoria();
     comercio?: Comercio;
     municipio?: Municipio;
     rating?: number;

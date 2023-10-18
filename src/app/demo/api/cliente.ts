@@ -13,6 +13,5 @@ export class Cliente{
     password?: string;
 
     municipio?: Municipio;
-
-
+    
 }

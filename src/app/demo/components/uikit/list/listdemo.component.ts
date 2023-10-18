@@ -39,8 +39,6 @@ export class ListDemoComponent implements OnInit {
             { label: 'Precio mas bajo', value: 'precio' }
         ];
 
-
-
     }
 
     onSortChange(event: any) {

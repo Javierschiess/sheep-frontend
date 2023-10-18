@@ -20,13 +20,10 @@ export class GuardService implements CanActivate{
       this.loginService.cerraSesion();
       return false;
     }
-
     //Token vigente
-
     const helper =  new JwtHelperService();
     let token = sessionStorage.getItem(environment.TOKEN_NAME);
     if (!helper.isTokenExpired(token)){
-
 
       return true;
     }else {
@@ -35,5 +32,4 @@ export class GuardService implements CanActivate{
     }
 
   }
-
 }
